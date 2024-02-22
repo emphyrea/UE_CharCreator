@@ -6,6 +6,7 @@
 #include "Camera/CameraComponent.h"
 #include "GameFramework/SpringArmComponent.h"
 #include "EnhancedInputSubsystemInterface.h"
+#include "GameFramework/Character.h"
 #include "EnhancedInputSubsystems.h"
 #include "GameFramework/CharacterMovementComponent.h"
 
@@ -18,12 +19,21 @@ AACharBase::AACharBase()
 	
 	cameraBoom = CreateDefaultSubobject<USpringArmComponent>("Camera Boom");
 	viewCamera = CreateDefaultSubobject<UCameraComponent>("View Camera");
+	
+	BodyMesh = CreateDefaultSubobject<USkeletalMeshComponent>("BodyMesh");
+	LegsMesh = CreateDefaultSubobject<USkeletalMeshComponent>("LegsMesh");
+	FeetMesh = CreateDefaultSubobject<USkeletalMeshComponent>("FeetMesh");
 
+	HeadMesh = this->GetMesh();
+	BodyMesh->SetupAttachment(HeadMesh);
+	LegsMesh->SetupAttachment(BodyMesh);
+	FeetMesh->SetupAttachment(LegsMesh);
+	
 	cameraBoom->SetupAttachment(GetRootComponent());
 	viewCamera->SetupAttachment(cameraBoom, USpringArmComponent::SocketName);
 
 	cameraBoom->bUsePawnControlRotation = true;
-	cameraBoom->TargetArmLength = 800.f;
+	cameraBoom->TargetArmLength = 300.f;
 	bUseControllerRotationYaw = false;
 
 	GetCharacterMovement()->bOrientRotationToMovement = true;
@@ -66,6 +76,39 @@ void AACharBase::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent
 		enhancedInputComponent->BindAction(lookAction, ETriggerEvent::Triggered, this, &AACharBase::Look);
 	}
 }
+
+void AACharBase::SwapHead(USkeletalMesh* MeshPart)
+{
+	if(MeshPart)
+	{
+		HeadMesh->SetSkeletalMesh(MeshPart, false);
+	}
+}
+
+void AACharBase::SwapBody(USkeletalMesh* MeshPart)
+{
+	if(MeshPart)
+	{
+		BodyMesh->SetSkeletalMesh(MeshPart, false);
+	}
+}
+
+void AACharBase::SwapLegs(USkeletalMesh* MeshPart)
+{
+	if(MeshPart)
+	{
+		LegsMesh->SetSkeletalMesh(MeshPart, false);
+	}
+}
+
+void AACharBase::SwapFeet(USkeletalMesh* MeshPart)
+{
+	if(MeshPart)
+	{
+		FeetMesh->SetSkeletalMesh(MeshPart, false);
+	}
+}
+
 
 void AACharBase::Move(const FInputActionValue& InputValue)
 {

@@ -31,6 +31,27 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 private:
+	//Character Customizer
+	UFUNCTION(BlueprintCallable, Category= "Character Creator")
+	void SwapHead(USkeletalMesh* MeshPart);
+	UFUNCTION(BlueprintCallable, Category= "Character Creator")
+	void SwapBody(USkeletalMesh* MeshPart);
+	UFUNCTION(BlueprintCallable, Category= "Character Creator")
+	void SwapLegs(USkeletalMesh* MeshPart);
+	UFUNCTION(BlueprintCallable, Category= "Character Creator")
+	void SwapFeet(USkeletalMesh* MeshPart);
+
+public:
+	UPROPERTY(EditAnywhere, Category= "Character")
+	USkeletalMeshComponent* HeadMesh;
+	UPROPERTY(EditAnywhere, Category= "Character")
+	USkeletalMeshComponent* BodyMesh;
+	UPROPERTY(EditAnywhere, Category= "Character")
+	USkeletalMeshComponent* LegsMesh;
+	UPROPERTY(EditAnywhere, Category= "Character")
+	USkeletalMeshComponent* FeetMesh;
+private:
+	
 	UPROPERTY(visibleAnywhere, Category = "View")
 	class USpringArmComponent* cameraBoom;
 
