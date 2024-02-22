@@ -53,7 +53,6 @@ void AACharBase::BeginPlay()
 			subsystem->AddMappingContext(mappingContext, 0);
 		}
 	}
-	
 }
 
 // Called every frame
@@ -107,6 +106,45 @@ void AACharBase::SwapFeet(USkeletalMesh* MeshPart)
 	{
 		FeetMesh->SetSkeletalMesh(MeshPart, false);
 	}
+}
+
+void AACharBase::SetHairColor(USkeletalMesh* MeshPart, const FColor& Color)
+{
+}
+
+void AACharBase::SetSkinColor(USkeletalMesh* MeshPart, const FColor& Color)
+{
+}
+
+void AACharBase::SetEyeColor(USkeletalMesh* MeshPart, const FColor& Color)
+{
+}
+
+void AACharBase::SetTopColor(USkeletalMesh* MeshPart, const FColor& Color)
+{
+}
+
+void AACharBase::SetPantsColor(USkeletalMesh* MeshPart, const FColor& Color)
+{
+}
+
+void AACharBase::SetShoesColor(USkeletalMesh* MeshPart, const FColor& Color)
+{
+}
+
+void AACharBase::SetUpButtons(UDataTable* table)
+{
+	//look at wbp ui
+	/*names = table->GetRowNames();
+	for each (object name in collection_to_loop)
+	{
+		table->FindRow<Structhere>(RowName, "");
+		if(bodypart == givenpart,)
+		{
+			createwidget()
+		}
+	}*/
+
 }
 
 

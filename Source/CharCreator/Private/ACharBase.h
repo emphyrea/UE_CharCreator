@@ -8,6 +8,7 @@
 #include "InputAction.h"
 #include "Camera/CameraComponent.h"
 #include "GameFramework/SpringArmComponent.h"
+#include "CaracterCreatorPart.h"
 #include "ACharBase.generated.h"
 
 UCLASS()
@@ -40,6 +41,25 @@ private:
 	void SwapLegs(USkeletalMesh* MeshPart);
 	UFUNCTION(BlueprintCallable, Category= "Character Creator")
 	void SwapFeet(USkeletalMesh* MeshPart);
+
+	UFUNCTION(BlueprintCallable, Category = "Character Creator")
+	void SetHairColor(USkeletalMesh* MeshPart, const FColor& Color);
+	UFUNCTION(BlueprintCallable, Category = "Character Creator")
+	void SetSkinColor(USkeletalMesh* MeshPart, const FColor& Color);
+	UFUNCTION(BlueprintCallable, Category = "Character Creator")
+	void SetEyeColor(USkeletalMesh* MeshPart, const FColor& Color);
+	UFUNCTION(BlueprintCallable, Category = "Character Creator")
+	void SetTopColor(USkeletalMesh* MeshPart, const FColor& Color);
+	UFUNCTION(BlueprintCallable, Category = "Character Creator")
+	void SetPantsColor(USkeletalMesh* MeshPart, const FColor& Color); 
+	UFUNCTION(BlueprintCallable, Category = "Character Creator")
+	void SetShoesColor(USkeletalMesh* MeshPart, const FColor& Color);
+
+	UPROPERTY(EditAnywhere, Category = "Character")
+	class UDataTable* DataTable;
+
+	UFUNCTION(BlueprintCallable, Category = "Character Creator")
+	void SetUpButtons(UDataTable* table);
 
 public:
 	UPROPERTY(EditAnywhere, Category= "Character")
