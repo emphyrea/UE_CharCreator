@@ -22,7 +22,7 @@ enum class EBodyPart : uint8
  * 
  */
 USTRUCT(BlueprintType, Blueprintable)
-struct FCharacterreatorPart : public FTableRowBase
+struct FCharacterCreatorPart : public FTableRowBase
 {
 	GENERATED_USTRUCT_BODY()
 	UPROPERTY(EditAnywhere, Category = "BodyParts")

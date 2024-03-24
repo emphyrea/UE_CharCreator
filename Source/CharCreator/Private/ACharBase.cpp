@@ -2,13 +2,18 @@
 
 
 #include "ACharBase.h"
-#include "EnhancedInputComponent.h"
+
 #include "Camera/CameraComponent.h"
-#include "GameFramework/SpringArmComponent.h"
-#include "EnhancedInputSubsystemInterface.h"
-#include "GameFramework/Character.h"
+#include "CaracterCreatorPart.h"
+#include "ChangePartButton.h"
+
+#include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
+#include "EnhancedInputSubsystemInterface.h"
+
+#include "GameFramework/Character.h"
 #include "GameFramework/CharacterMovementComponent.h"
+#include "GameFramework/SpringArmComponent.h"
 
 // Sets default values
 AACharBase::AACharBase()
@@ -39,6 +44,8 @@ AACharBase::AACharBase()
 	GetCharacterMovement()->bOrientRotationToMovement = true;
 	GetCharacterMovement()->RotationRate = FRotator(1080.f);
 	GetCharacterMovement()->JumpZVelocity = 600.f;
+
+	
 }
 
 // Called when the game starts or when spawned
@@ -132,18 +139,26 @@ void AACharBase::SetShoesColor(USkeletalMesh* MeshPart, const FColor& Color)
 {
 }
 
-void AACharBase::SetUpButtons(UDataTable* table)
+void AACharBase::SetUpButtons(UDataTable* table,EBodyPart Parts, UPanelWidget* ParentBox)
 {
 	//look at wbp ui
-	/*names = table->GetRowNames();
-	for each (object name in collection_to_loop)
+	TArray<FName> RowNames = table->GetRowNames();
+	for (FName RowName : RowNames)
 	{
-		table->FindRow<Structhere>(RowName, "");
-		if(bodypart == givenpart,)
+		EBodyPart RowPart = table->FindRow<FCharacterCreatorPart>(RowName, "")->BodyPart;
+		UTexture2D* Image = table->FindRow<FCharacterCreatorPart>(RowName, "")->Image;
+		USkeletalMesh* ChosenMesh = table->FindRow<FCharacterCreatorPart>(RowName, "")->Mesh;
+		
+		if(RowPart == Parts)
 		{
-			createwidget()
+			WidgetPartButtonTemplate->SetImage(Image);
+			WidgetPartButtonTemplate->SetPart(RowPart);
+			WidgetPartButtonTemplate->SetMesh(ChosenMesh);
+
+			//CreateWidget(GetWorld(), WidgetPartButtonTemplate); //fix
+			//ParentBox->AddChild(ChangePartButtonWidget);
 		}
-	}*/
+	}
 
 }
 

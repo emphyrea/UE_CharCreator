@@ -9,6 +9,8 @@
 #include "Camera/CameraComponent.h"
 #include "GameFramework/SpringArmComponent.h"
 #include "CaracterCreatorPart.h"
+#include "ChangePartButton.h"
+#include "Components/PanelWidget.h"
 #include "ACharBase.generated.h"
 
 UCLASS()
@@ -31,8 +33,13 @@ public:
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+
+	UPROPERTY(EditAnywhere)
+	UChangePartButton* WidgetPartButtonTemplate;
+	
 private:
 	//Character Customizer
+	
 	UFUNCTION(BlueprintCallable, Category= "Character Creator")
 	void SwapHead(USkeletalMesh* MeshPart);
 	UFUNCTION(BlueprintCallable, Category= "Character Creator")
@@ -59,7 +66,7 @@ private:
 	class UDataTable* DataTable;
 
 	UFUNCTION(BlueprintCallable, Category = "Character Creator")
-	void SetUpButtons(UDataTable* table);
+	void SetUpButtons(UDataTable* table, EBodyPart Parts, UPanelWidget* ParentBox);
 
 public:
 	UPROPERTY(EditAnywhere, Category= "Character")
