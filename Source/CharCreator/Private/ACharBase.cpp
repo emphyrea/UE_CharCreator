@@ -137,6 +137,7 @@ void AACharBase::SetPantsColor(USkeletalMesh* MeshPart, const FColor& Color)
 
 void AACharBase::SetShoesColor(USkeletalMesh* MeshPart, const FColor& Color)
 {
+	//MAterial	MeshPart->GetMaterials().Last();
 }
 
 void AACharBase::SetUpButtons(UDataTable* table,EBodyPart Parts, UPanelWidget* ParentBox)
