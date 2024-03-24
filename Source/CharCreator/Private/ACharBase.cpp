@@ -152,12 +152,11 @@ void AACharBase::SetUpButtons(UDataTable* table,EBodyPart Parts, UPanelWidget* P
 		
 		if(RowPart == Parts)
 		{
+			UChangePartButton* WidgetPartButtonTemplate = CreateWidget<UChangePartButton>(GetWorld());
 			WidgetPartButtonTemplate->SetImage(Image);
 			WidgetPartButtonTemplate->SetPart(RowPart);
 			WidgetPartButtonTemplate->SetMesh(ChosenMesh);
-
-			//CreateWidget(GetWorld(), WidgetPartButtonTemplate); //fix
-			//ParentBox->AddChild(ChangePartButtonWidget);
+			ParentBox->AddChild(WidgetPartButtonTemplate);
 		}
 	}
 

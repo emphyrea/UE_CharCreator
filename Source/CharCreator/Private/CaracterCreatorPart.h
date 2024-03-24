@@ -8,7 +8,7 @@
 
 #include "CaracterCreatorPart.generated.h"
 
-UENUM(BlueprintType)
+UENUM(BlueprintType, Blueprintable)
 enum class EBodyPart : uint8
 {
 	None,
@@ -25,12 +25,19 @@ USTRUCT(BlueprintType, Blueprintable)
 struct FCharacterCreatorPart : public FTableRowBase
 {
 	GENERATED_USTRUCT_BODY()
-	UPROPERTY(EditAnywhere, Category = "BodyParts")
+	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "BodyParts")
 	EBodyPart BodyPart;
 	
-	UPROPERTY(EditAnywhere, Category = "BodyParts")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "BodyParts")
 	class UTexture2D* Image;
 
-	UPROPERTY(EditAnywhere, Category = "BodyParts")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "BodyParts")
 	class USkeletalMesh* Mesh;
+
+	FCharacterCreatorPart()
+	{
+		BodyPart = EBodyPart::None;
+		Image = nullptr;
+		Mesh = nullptr;
+	}
 };
