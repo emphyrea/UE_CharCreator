@@ -11,7 +11,6 @@
 UENUM(BlueprintType, Blueprintable)
 enum class EBodyPart : uint8
 {
-	None,
 	Head,
 	Body,
 	Legs,
@@ -36,7 +35,7 @@ struct FCharacterCreatorPart : public FTableRowBase
 
 	FCharacterCreatorPart()
 	{
-		BodyPart = EBodyPart::None;
+		BodyPart = EBodyPart::Head;
 		Image = nullptr;
 		Mesh = nullptr;
 	}

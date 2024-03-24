@@ -25,14 +25,14 @@ AACharBase::AACharBase()
 	cameraBoom = CreateDefaultSubobject<USpringArmComponent>("Camera Boom");
 	viewCamera = CreateDefaultSubobject<UCameraComponent>("View Camera");
 	
-	BodyMesh = CreateDefaultSubobject<USkeletalMeshComponent>("BodyMesh");
-	LegsMesh = CreateDefaultSubobject<USkeletalMeshComponent>("LegsMesh");
-	FeetMesh = CreateDefaultSubobject<USkeletalMeshComponent>("FeetMesh");
+	BodyMeshComp = CreateDefaultSubobject<USkeletalMeshComponent>("BodyMesh");
+	LegsMeshComp = CreateDefaultSubobject<USkeletalMeshComponent>("LegsMesh");
+	FeetMeshComp = CreateDefaultSubobject<USkeletalMeshComponent>("FeetMesh");
 
-	HeadMesh = this->GetMesh();
-	BodyMesh->SetupAttachment(HeadMesh);
-	LegsMesh->SetupAttachment(BodyMesh);
-	FeetMesh->SetupAttachment(LegsMesh);
+	HeadMeshComp = this->GetMesh();
+	BodyMeshComp->SetupAttachment(HeadMeshComp);
+	LegsMeshComp->SetupAttachment(BodyMeshComp);
+	FeetMeshComp->SetupAttachment(LegsMeshComp);
 	
 	cameraBoom->SetupAttachment(GetRootComponent());
 	viewCamera->SetupAttachment(cameraBoom, USpringArmComponent::SocketName);
@@ -87,7 +87,7 @@ void AACharBase::SwapHead(USkeletalMesh* MeshPart)
 {
 	if(MeshPart)
 	{
-		HeadMesh->SetSkeletalMesh(MeshPart, false);
+		HeadMeshComp->SetSkeletalMesh(MeshPart,false);
 	}
 }
 
@@ -95,7 +95,7 @@ void AACharBase::SwapBody(USkeletalMesh* MeshPart)
 {
 	if(MeshPart)
 	{
-		BodyMesh->SetSkeletalMesh(MeshPart, false);
+		BodyMeshComp->SetSkeletalMesh(MeshPart,false);
 	}
 }
 
@@ -103,7 +103,7 @@ void AACharBase::SwapLegs(USkeletalMesh* MeshPart)
 {
 	if(MeshPart)
 	{
-		LegsMesh->SetSkeletalMesh(MeshPart, false);
+		LegsMeshComp->SetSkeletalMesh(MeshPart,false);
 	}
 }
 
@@ -111,7 +111,7 @@ void AACharBase::SwapFeet(USkeletalMesh* MeshPart)
 {
 	if(MeshPart)
 	{
-		FeetMesh->SetSkeletalMesh(MeshPart, false);
+		FeetMeshComp->SetSkeletalMesh(MeshPart,false);
 	}
 }
 

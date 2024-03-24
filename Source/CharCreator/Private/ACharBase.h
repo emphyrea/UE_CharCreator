@@ -66,14 +66,14 @@ private:
 	void SetUpButtons(UDataTable* table, EBodyPart Parts, UPanelWidget* ParentBox);
 
 public:
-	UPROPERTY(EditAnywhere, Category= "Character")
-	USkeletalMeshComponent* HeadMesh;
-	UPROPERTY(EditAnywhere, Category= "Character")
-	USkeletalMeshComponent* BodyMesh;
-	UPROPERTY(EditAnywhere, Category= "Character")
-	USkeletalMeshComponent* LegsMesh;
-	UPROPERTY(EditAnywhere, Category= "Character")
-	USkeletalMeshComponent* FeetMesh;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category= "Character")
+	USkeletalMeshComponent* HeadMeshComp;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category= "Character")
+	USkeletalMeshComponent* BodyMeshComp;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category= "Character")
+	USkeletalMeshComponent* LegsMeshComp;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category= "Character")
+	USkeletalMeshComponent* FeetMeshComp;
 private:
 	
 	UPROPERTY(visibleAnywhere, Category = "View")
