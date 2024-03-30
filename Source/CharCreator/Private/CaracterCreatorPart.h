@@ -17,6 +17,18 @@ enum class EBodyPart : uint8
 	Feet
 };
 
+
+UENUM(BlueprintType, Blueprintable)
+enum class EBodyPartColor : uint8
+{
+	Hair,
+	Skin,
+	Eye,
+	Top,
+	Pants,
+	Shoes
+};
+
 /**
  * 
  */
@@ -32,11 +44,20 @@ struct FCharacterCreatorPart : public FTableRowBase
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "BodyParts")
 	class USkeletalMesh* Mesh;
+	
+};
 
-	FCharacterCreatorPart()
-	{
-		BodyPart = EBodyPart::Head;
-		Image = nullptr;
-		Mesh = nullptr;
-	}
+USTRUCT(BlueprintType, Blueprintable)
+struct FCharacterCreatorColorPart : public FTableRowBase
+{
+	GENERATED_USTRUCT_BODY()
+	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "BodyParts")
+	EBodyPartColor BodyPartToColor;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "BodyParts")
+	class USkeletalMesh* Mesh;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "BodyPartsColor")
+	 FLinearColor Color;
+	
 };

@@ -47,17 +47,17 @@ private:
 	void SwapFeet(USkeletalMesh* MeshPart);
 
 	UFUNCTION(BlueprintCallable, Category = "Character Creator")
-	void SetHairColor(USkeletalMesh* MeshPart, const FColor& Color);
+	void SetHairColor(USkeletalMeshComponent* MeshPart, const FLinearColor& Color);
 	UFUNCTION(BlueprintCallable, Category = "Character Creator")
-	void SetSkinColor(USkeletalMesh* MeshPart, const FColor& Color);
+	void SetSkinColor(USkeletalMeshComponent* MeshPart, const FLinearColor& Color);
 	UFUNCTION(BlueprintCallable, Category = "Character Creator")
-	void SetEyeColor(USkeletalMesh* MeshPart, const FColor& Color);
+	void SetEyeColor(USkeletalMeshComponent* MeshPart, const FLinearColor& Color);
 	UFUNCTION(BlueprintCallable, Category = "Character Creator")
-	void SetTopColor(USkeletalMesh* MeshPart, const FColor& Color);
+	void SetTopColor(USkeletalMeshComponent* MeshPart, const FLinearColor& Color);
 	UFUNCTION(BlueprintCallable, Category = "Character Creator")
-	void SetPantsColor(USkeletalMesh* MeshPart, const FColor& Color); 
+	void SetPantsColor(USkeletalMeshComponent* MeshPart, const FLinearColor& Color); 
 	UFUNCTION(BlueprintCallable, Category = "Character Creator")
-	void SetShoesColor(USkeletalMesh* MeshPart, const FColor& Color);
+	void SetShoesColor(USkeletalMeshComponent* MeshPart, const FLinearColor& Color);
 
 	UPROPERTY(EditAnywhere, Category = "Character")
 	class UDataTable* DataTable;
@@ -75,6 +75,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category= "Character")
 	USkeletalMeshComponent* FeetMeshComp;
 private:
+
+	UPROPERTY(EditDefaultsOnly, Category= "Widgets")
+	TSubclassOf<class UChangePartButton> ChangePartButtonClass;
 	
 	UPROPERTY(visibleAnywhere, Category = "View")
 	class USpringArmComponent* cameraBoom;

@@ -115,34 +115,140 @@ void AACharBase::SwapFeet(USkeletalMesh* MeshPart)
 	}
 }
 
-void AACharBase::SetHairColor(USkeletalMesh* MeshPart, const FColor& Color)
+void AACharBase::SetHairColor(USkeletalMeshComponent* MeshPart, const FLinearColor& Color)
 {
+
+	TArray<UMaterialInterface*> Mats = MeshPart->GetMaterials();
+	for(UMaterialInterface* mat : Mats)
+	{
+		if(mat->GetName() == "Hair_Main")
+		{
+			UMaterial* HairMat = mat->GetMaterial();
+			UMaterialInstanceDynamic* dynamicHairMat = UMaterialInstanceDynamic::Create(HairMat, this);
+
+			if(MeshPart->GetMaterialIndex("Hair"))
+			{
+				int index = MeshPart->GetMaterialIndex("Hair");
+				MeshPart->SetMaterial(index, dynamicHairMat);
+			}
+			if(MeshPart->GetMaterialIndex("Eyebrows"))
+			{
+				int index = MeshPart->GetMaterialIndex("Eyebrows");
+				MeshPart->SetMaterial(index, dynamicHairMat);
+			}
+			if(MeshPart->GetMaterialIndex("Hair2"))
+			{
+				int index = MeshPart->GetMaterialIndex("Hair2");
+				MeshPart->SetMaterial(index, dynamicHairMat);
+			}
+			dynamicHairMat->SetVectorParameterValue(TEXT("Color"), Color);
+		}
+	}
 }
 
-void AACharBase::SetSkinColor(USkeletalMesh* MeshPart, const FColor& Color)
+void AACharBase::SetSkinColor(USkeletalMeshComponent* MeshPart, const FLinearColor& Color)
 {
+	
+	TArray<UMaterialInterface*> MatInterfaces = MeshPart->GetMaterials();
+	for(UMaterialInterface* matInterface : MatInterfaces)
+	{
+		UMaterial* mat = matInterface->GetBaseMaterial();
+		if(mat->GetName() == "Skin_Main")
+		{
+			UMaterial* SkinMat = mat;
+			UMaterialInstanceDynamic* dynamicSkinMat = UMaterialInstanceDynamic::Create(SkinMat, this);
+			if(MeshPart->GetMaterialIndex("Skin"))
+			{
+				int index = MeshPart->GetMaterialIndex("Skin");
+				MeshPart->SetMaterial(index, dynamicSkinMat);
+			}
+			dynamicSkinMat->SetVectorParameterValue(TEXT("Color"), Color);
+		}
+	}
 }
 
-void AACharBase::SetEyeColor(USkeletalMesh* MeshPart, const FColor& Color)
+void AACharBase::SetEyeColor(USkeletalMeshComponent* MeshPart, const FLinearColor& Color)
 {
+	
+	TArray<UMaterialInterface*> Mats = MeshPart->GetMaterials();
+	for(UMaterialInterface* mat : Mats)
+	{
+		if(mat->GetName() == "Eye_Main")
+		{
+			UMaterial* EyeMat = mat->GetMaterial();
+			UMaterialInstanceDynamic* dynamicEyeMat = UMaterialInstanceDynamic::Create(EyeMat, this);
+			if(MeshPart->GetMaterialIndex("Eye"))
+			{
+				int index = MeshPart->GetMaterialIndex("Eye");
+				MeshPart->SetMaterial(index, dynamicEyeMat);
+			}
+			dynamicEyeMat->SetVectorParameterValue(TEXT("Color"), Color);
+		}
+	}
 }
 
-void AACharBase::SetTopColor(USkeletalMesh* MeshPart, const FColor& Color)
+void AACharBase::SetTopColor(USkeletalMeshComponent* MeshPart, const FLinearColor& Color)
 {
+	
+	TArray<UMaterialInterface*> Mats = MeshPart->GetMaterials();
+	for(UMaterialInterface* mat : Mats)
+	{
+		if(mat->GetName() == "Top_Main")
+		{
+			UMaterial* TopMat = mat->GetMaterial();
+			UMaterialInstanceDynamic* dynamicTopMat = UMaterialInstanceDynamic::Create(TopMat, this);
+			if(MeshPart->GetMaterialIndex("Top"))
+			{
+				int index = MeshPart->GetMaterialIndex("Top");
+				MeshPart->SetMaterial(index, dynamicTopMat);
+			}
+			dynamicTopMat->SetVectorParameterValue(TEXT("Color"), Color);
+		}
+	}
 }
 
-void AACharBase::SetPantsColor(USkeletalMesh* MeshPart, const FColor& Color)
+void AACharBase::SetPantsColor(USkeletalMeshComponent* MeshPart, const FLinearColor& Color)
 {
+	
+	TArray<UMaterialInterface*> Mats = MeshPart->GetMaterials();
+	for(UMaterialInterface* mat : Mats)
+	{
+		if(mat->GetName() == "Pants_Main")
+		{
+			UMaterial* PantsMat = mat->GetMaterial();
+			UMaterialInstanceDynamic* dynamicPantsMat = UMaterialInstanceDynamic::Create(PantsMat, this);
+			if(MeshPart->GetMaterialIndex("Pants"))
+			{
+				int index = MeshPart->GetMaterialIndex("Pants");
+				MeshPart->SetMaterial(index, dynamicPantsMat);
+			}
+			dynamicPantsMat->SetVectorParameterValue(TEXT("Color"), Color);
+		}
+	}
 }
 
-void AACharBase::SetShoesColor(USkeletalMesh* MeshPart, const FColor& Color)
+void AACharBase::SetShoesColor(USkeletalMeshComponent* MeshPart, const FLinearColor& Color)
 {
-	//MAterial	MeshPart->GetMaterials().Last();
+	
+	TArray<UMaterialInterface*> Mats = MeshPart->GetMaterials();
+	for(UMaterialInterface* mat : Mats)
+	{
+		if(mat->GetName() == "Shoes_Main")
+		{
+			UMaterial* ShoesMat = mat->GetMaterial();
+			UMaterialInstanceDynamic* dynamicShoesMat = UMaterialInstanceDynamic::Create(ShoesMat, this);
+			if(MeshPart->GetMaterialIndex("Shoes"))
+			{
+				int index = MeshPart->GetMaterialIndex("Shoes");
+				MeshPart->SetMaterial(index, dynamicShoesMat);
+			}
+			dynamicShoesMat->SetVectorParameterValue(TEXT("Color"), Color);
+		}
+	}
 }
 
 void AACharBase::SetUpButtons(UDataTable* table,EBodyPart Parts, UPanelWidget* ParentBox)
 {
-	//look at wbp ui
 	TArray<FName> RowNames = table->GetRowNames();
 	for (FName RowName : RowNames)
 	{
@@ -152,14 +258,15 @@ void AACharBase::SetUpButtons(UDataTable* table,EBodyPart Parts, UPanelWidget* P
 		
 		if(RowPart == Parts)
 		{
-			UChangePartButton* WidgetPartButtonTemplate = CreateWidget<UChangePartButton>(GetWorld());
-			WidgetPartButtonTemplate->SetImage(Image);
+			UChangePartButton* WidgetPartButtonTemplate = CreateWidget<UChangePartButton>(GetWorld(), ChangePartButtonClass);
+			//WidgetPartButtonTemplate->OwningCharacter = this;
 			WidgetPartButtonTemplate->SetPart(RowPart);
+			WidgetPartButtonTemplate->SetImage(Image);
 			WidgetPartButtonTemplate->SetMesh(ChosenMesh);
 			ParentBox->AddChild(WidgetPartButtonTemplate);
 		}
+		continue;
 	}
-
 }
 
 
