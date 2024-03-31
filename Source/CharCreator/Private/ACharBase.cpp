@@ -207,7 +207,7 @@ void AACharBase::SetTopColor(USkeletalMeshComponent* MeshPart, const FLinearColo
 
 			//UE_LOG(LogTemp, Warning, TEXT("Set material: %s"), *MeshPart->GetMaterial(index)->GetName());
 			UMaterialInstanceDynamic* dynamicTopMat = UMaterialInstanceDynamic::Create(TopMaterial, this);
-			if(MeshPart->GetMaterialIndex("Eye"))
+			if(MeshPart->GetMaterialIndex("Top"))
 			{
 				int index = MeshPart->GetMaterialIndex("Top");
 				MeshPart->SetMaterial(index, dynamicTopMat);
