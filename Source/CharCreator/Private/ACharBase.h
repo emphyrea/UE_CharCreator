@@ -66,6 +66,19 @@ private:
 	void SetUpButtons(UDataTable* table, EBodyPart Parts, UPanelWidget* ParentBox);
 
 public:
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Materials")
+	UMaterial* HairMaterial;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Materials")
+	UMaterial* SkinMaterial;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Materials")
+	UMaterial* EyeMaterial;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Materials")
+	UMaterial* TopMaterial;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Materials")
+	UMaterial* PantsMaterial;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Materials")
+	UMaterial* ShoesMaterial;
+	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category= "Character")
 	USkeletalMeshComponent* HeadMeshComp;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category= "Character")
